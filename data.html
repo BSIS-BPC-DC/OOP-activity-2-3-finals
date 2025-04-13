@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>COLLEGE DISTINCTION</title>
+	<style type="text/css">
+
+*{
+	font-family: Roboto, Arial !important;
+}
+#gradeTable{
+	border: 1px;
+	border-color: blue;
+	color: green;
+}
+body{
+    background: linear-gradient(45deg, #8e2de2, #4a00e0);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	margin-top: 3%;
+	font-family: Roboto;
+}
+.main{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	margin-top: 3%;
+
+}
+.column1, .column2{
+	background-color: whitesmoke;
+	width: 40%;
+	border: solid 6px slategrey;
+	border-radius: 10px;
+	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+.column1{
+	align-items: center;
+	text-align: center;
+}
+	.column2{
+	text-align: center;
+}
+label{
+	text-align: left;
+	margin-top: 10px;
+}
+input{
+	width: 300px;
+	padding: 10px;
+	font-size: 14px;
+}
+button{
+	margin-top: 20px;
+	width: 150px;
+	height: 50px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#btn1{
+    background: linear-gradient(to left, #4776E6, #8e54e9);
+	color: ghostwhite;
+	border-radius: 10px;
+	border: none;
+	transition: all 0.3s ease;
+}
+#btn1:hover{
+	background: green;
+	border: 3px solid whitesmoke;
+	color: white;
+	font-weight: bold;
+}
+
+#btn2{
+	background-color: indianred;
+	color: white;
+	border-radius: 10px;
+	border: none;
+    transition: all 0.3s ease;
+}
+#btn2:hover{
+	background-color: red;
+	border: 3px solid whitesmoke;
+	color: white;
+	font-weight: bold;
+}
+
+#gradeTable{
+	background-color: white;
+	font-family: Roboto;
+	font-size: 16px;
+	border-collapse: collapse;
+}
+th, td{
+	border: 1px solid blueviolet;
+}
+
+	</style>
+</head>
+
+<body>
+<div class="main">
+	<div class="column1">
+		<h1>Enter Student Data</h1>
+		<label>Student Number:</label>
+		<input type="text" id="sno">
+		<label>Last Name:</label>
+		<input type="text" id="lname">
+		<label>First Name:</label>
+		<input type="text" id="fname">
+		<label>Course and Section:</label>
+		<input type="text" id="crs">
+
+		<label for="score">Average (1-5)</label>
+		<input type="number" id="score" min="1" max="5" step="0.01">
+
+		<button id="btn1" onclick="insertGrade()">Submit</button>
+		<button id="btn2" onclick="clrfrm()">Clear</button>
+
+	</div>
+	<div class="column2">
+		<h1>Student Information</h1>
+		<table id="gradeTable">
+			<thead>
+				<tr>
+					<th>Student Number</th>
+					<th>Last Name</th>
+					<th>First Name</th>
+					<th>Course and Section</th>
+					<th>Average</th>
+					<th>Distinction</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript">
+	function insertGrade()
+	{
+		if (confirm('Are you sure you want to add all data in the table?'))
+	{
+
+	const sno = document.getElementById('sno').value;
+	const lname = document.getElementById('lname').value;
+	const fname = document.getElementById('fname').value;
+	const crs = document.getElementById('crs').value;
+	const score = parseFloat(document.getElementById('score').value);
+	if (!sno || !lname || !fname || !crs || isNaN(score) || score < 1 || score > 5) 
+	{
+		alert('Please fill in all fields with valid data (Grade must be between 1 and 5).');
+	}
+
+	let distinction
+	if (score >= 1 && score <= 1.2) 
+	{
+		distinction = 'SUMMA CUM LAUDE';
+	}
+	else if (score > 1.2 && score <= 1.5) 
+	{
+		distinction = 'MANGA CUM LAUDE'
+	}
+	else if(score > 1.5 && score <= 2)
+	{
+		distinction = 'CUM LAUDE';
+	}
+	else if (score > 2 && score <= 3.99)
+	{
+		distinction = 'PASSED';
+	}
+	else
+	{
+		distinction = 'FAILED';
+	}
+	const table = document.getElementById('gradeTable').getElementsByTagName('tbody')[0];
+	const newRow = table.insertRow();
+	newRow.insertCell(0).innerHTML = sno;
+	newRow.insertCell(1).innerHTML = lname;
+	newRow.insertCell(2).innerHTML = fname;
+	newRow.insertCell(3).innerHTML = crs;
+	newRow.insertCell(4).innerHTML = score;
+	newRow.insertCell(5).innerHTML = distinction;
+
+	}
+	}
+
+	function clrfrm()
+	{
+		document.getElementById('sno').value = '';
+		document.getElementById('lname').value = '';
+		document.getElementById('fname').value = '';
+		document.getElementById('crs').value = '';
+		document.getElementById('score').value = '';              
+	}
+
+</script>
+</body>
+
+</html>
