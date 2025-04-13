@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login Form</title>
+
+	<style type="text/css">
+
+*{
+	font-family: Roboto, Arial !important;
+}
+
+body {
+    background: linear-gradient(45deg, #8e2de2, #4a00e0);
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+body, h1{
+	font-weight: 600;
+    margin-bottom: 2rem;
+    position: relative;
+}
+.titulo{
+	font-weight: bold;
+}
+
+.container{
+	background-color: white;
+    min-width: 320px;
+    min-height: 40vh;
+	border-radius: 10px;
+	border: solid 6px slategrey;
+	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	margin-bottom: 20px;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+	transform: translate(-50%, -50%);
+
+}
+
+.form{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	margin-top: 3%;
+	align-items: center;
+}
+
+.loginname{
+	display: flex;
+	flex-direction: column;
+}
+
+li{
+	list-style: none;
+}
+
+.submit{
+    margin-top: 2rem;
+    padding: 0.4rem;
+    width: 100%;
+    background: linear-gradient(to left, #4776E6, #8e54e9);
+    cursor: pointer;
+    color: white;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.submit:hover{
+    background: green;
+    letter-spacing: 0.5px;
+	color: white;
+	border-color: white;
+	font-weight: bold;
+	border-radius: 6px;
+}
+
+	</style>
+
+</head>
+<body>
+
+<div class="container">
+
+	<h1 class="loginname">Login Form</h1>
+
+	<form name="login" onsubmit="return validateForm();" method="post">
+	<table>
+		<tr>
+			<td>
+		<label class="titulo" for="username">Username: </label></td><td><input class
+		class="username" type="text" name="username">
+	</td></tr>
+		<tr><td>
+		<label class="titulo" for="password">Password: </label></td><td><input class="
+		password" type="password" name="password"></td>
+	</table>
+		<br>
+		<input type="button" name="submit" class="submit" value="Login" onclick="validate();">
+	</ul>
+	</form>
+
+</div>
+
+<script type="text/javascript">
+var count = 2;
+function validate() {
+	var user = document.login.username.value;
+	var password = document.login.password.value;
+	var valid = false;
+	var usernameArray = ["admin"];
+	var passwordArray = ["root"];
+	
+	for (var i = 0; i < usernameArray.length; i++) {
+		if (user == usernameArray[i] && password == passwordArray[i]) {
+			valid = true;
+			break;
+		}
+	}
+
+	if (valid) {
+		alert("Login Was Successful !");
+		window.location.href = "./data.html";
+		return false;
+	}
+	var again ="tries";
+	if (count == 1)
+	{
+	again = "try"
+	}
+	if (count >= 1)
+	{
+	alert ("Wrong Password or Username !!!")
+	count--;
+	}
+}
+</script>
+
+</body>
+</html>
